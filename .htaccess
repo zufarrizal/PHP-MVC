@@ -1,0 +1,27 @@
+# Aktifkan mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Arahkan semua permintaan ke folder 'public'
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
+
+# Menolak akses langsung ke folder lain kecuali 'public'
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Mengizinkan akses ke folder 'public' dan file
+<FilesMatch "^(public|index\.php)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Menolak akses ke folder lain
+<Files ~ "^(assets|config|controllers|models)/">
+    Order Deny,Allow
+    Deny from all
+</Files>

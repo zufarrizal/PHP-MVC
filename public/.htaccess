@@ -1,0 +1,11 @@
+# Aktifkan mod_rewrite untuk pengalihan URL
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Arahkan semua permintaan yang tidak mengarah ke file atau folder yang ada ke index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+
+</IfModule>
