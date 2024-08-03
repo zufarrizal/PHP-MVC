@@ -1,0 +1,28 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS `arsip_buku`;
+USE `arsip_buku`;
+
+-- Create the table `buku` if it does not exist
+CREATE TABLE IF NOT EXISTS `buku` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `penulis` varchar(255) NOT NULL,
+  `penerbit` varchar(255) NOT NULL,
+  `tahun_penerbitan` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Add primary key to the table `buku`
+ALTER TABLE `buku`
+  ADD PRIMARY KEY (`id`);
+
+-- Set auto-increment on the `id` column
+ALTER TABLE `buku`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Insert 5 sample data entries in Indonesian
+INSERT INTO `buku` (`judul`, `penulis`, `penerbit`, `tahun_penerbitan`) VALUES
+('Laskar Pelangi', 'Andrea Hirata', 'Bentang Pustaka', 2005),
+('Bumi Manusia', 'Pramoedya Ananta Toer', 'Hasta Mitra', 1980),
+('Supernova', 'Dewi Lestari', 'Truedee Books', 2001),
+('Negeri 5 Menara', 'Ahmad Fuadi', 'Gramedia Pustaka Utama', 2009),
+('Ayat-Ayat Cinta', 'Habiburrahman El Shirazy', 'Republika', 2004);
